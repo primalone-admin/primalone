@@ -24,6 +24,10 @@ const photos = {
   'PrimalOne fitness ritual in sage-6.png': 'fitness',
   'Precision Droplet Into a Sage Vial-7.png': 'lab-droplet',
   'PrimalOne Restore Evening Ritual-8.png': 'restore-evening',
+  // About · everyday gap lifestyle photos
+  'Rushed mornings.jpg': 'rushed-mornings',
+  'as day go on.jpg': 'days-on-go',
+  'late desk.jpg': 'late-desk',
 };
 // Every photo gets all three files. The largest is capped at the original width (never upscaled),
 // so a "-1600" file may be slightly narrower than 1600px; browsers only use the number to pick a file.
@@ -38,19 +42,6 @@ for (const [file, name] of Object.entries(photos)) {
     await sharp(`${SRC}/${file}`).resize({ width: Math.min(w, width) }).webp({ quality: 78 }).toFile(`${OUT}/${name}-${w}.webp`);
   }
   console.log(name, `${width}x${height}`);
-}
-
-// Cut-outs with transparent backgrounds: kept whole (no resizing up), alpha preserved.
-const cutouts = {
-  'PrimalOne_Powder_Pour-3-removebg-preview.png': { out: 'origin-pour-cutout' },
-  'Tilted_PrimalOne_Bottle_with_Sage_Drink-2-removebg-preview.png': { out: 'bottle-tilt-cutout', trim: true, width: 900 },
-};
-for (const [file, conf] of Object.entries(cutouts)) {
-  let pipeline = sharp(`${SRC}/${file}`);
-  if (conf.trim) pipeline = pipeline.trim({ threshold: 5 });
-  if (conf.width) pipeline = pipeline.resize({ width: conf.width, withoutEnlargement: false, kernel: sharp.kernel.lanczos3 });
-  await pipeline.webp({ quality: 92, alphaQuality: 100 }).toFile(`${OUT}/${conf.out}.webp`);
-  console.log(conf.out, 'cutout');
 }
 
 // Logos: the supplied PNGs are transparent. Keep the brand colours for light

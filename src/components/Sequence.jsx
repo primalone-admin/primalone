@@ -52,9 +52,17 @@ function ProductPanel({ product, tone, videoRef }) {
 
           <figure className="pblock__visual">
             <div className="pblock__card">
-              {/* The jar's 360° turn, scrubbed by scroll rather than played */}
-              <video ref={videoRef} className="pblock__video" src={p.image.scrub} muted playsInline preload="auto"
-                aria-label={p.image.alt} />
+              {/* Alpha turntable — product only, no baked background */}
+              <video
+                ref={videoRef}
+                className="pblock__video"
+                src={p.image.turn || p.image.scrub}
+                muted
+                loop
+                playsInline
+                preload="auto"
+                aria-label={p.image.alt}
+              />
             </div>
             {p.formatTbc && <figcaption className="fine pblock__caption">{p.formatTbc} <Tbc /></figcaption>}
           </figure>
@@ -115,18 +123,45 @@ export default function Sequence() {
     return () => rail.removeEventListener('scroll', onSwipe);
   }, [horizontal]);
 
+  // Keep jars spinning while the product track is visible; pause off-screen / reduced motion
+  useEffect(() => {
+    const track = trackRef.current;
+    const videos = [originVideo.current, restoreVideo.current].filter(Boolean);
+    if (!track || !videos.length) return undefined;
+
+    const playAll = () => {
+      if (reduced) return;
+      videos.forEach((v) => { v.play().catch(() => {}); });
+    };
+    const pauseAll = () => {
+      videos.forEach((v) => { v.pause(); });
+    };
+
+    if (reduced) {
+      pauseAll();
+      return undefined;
+    }
+
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) playAll();
+      else pauseAll();
+    }, { threshold: 0.2 });
+    io.observe(track);
+    videos.forEach((v) => v.addEventListener('loadeddata', playAll));
+    playAll();
+
+    return () => {
+      io.disconnect();
+      videos.forEach((v) => v.removeEventListener('loadeddata', playAll));
+      pauseAll();
+    };
+  }, [horizontal, reduced]);
+
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     const panels = [...track.querySelectorAll('.pblock')];
-    const videos = [originVideo.current, restoreVideo.current];
     let frame = 0;
-
-    const scrub = (video, t) => {
-      if (!video || !video.duration) return;
-      const time = clamp01(t) * (video.duration - 0.05);
-      if (Math.abs(video.currentTime - time) > 0.02) video.currentTime = time;
-    };
 
     const update = () => {
       frame = 0;
@@ -139,15 +174,12 @@ export default function Sequence() {
         track.style.setProperty('--slide', slide.toFixed(4));
         mark(slide > 0.5 ? 1 : 0);
         panels.forEach((el) => el.style.setProperty('--p', p.toFixed(4)));
-        scrub(videos[0], p / 0.55);
-        scrub(videos[1], (p - 0.45) / 0.55);
       } else {
         // Each panel's own progress through the viewport
-        panels.forEach((el, i) => {
+        panels.forEach((el) => {
           const r = el.getBoundingClientRect();
           const p = clamp01((vh - r.top) / (vh + r.height));
           el.style.setProperty('--p', p.toFixed(4));
-          scrub(videos[i], (p - 0.1) / 0.8);
         });
       }
     };
@@ -155,12 +187,9 @@ export default function Sequence() {
     update();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    // The first frame needs the video's duration, which arrives with its metadata
-    videos.forEach((v) => v?.addEventListener('loadedmetadata', onScroll));
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
-      videos.forEach((v) => v?.removeEventListener('loadedmetadata', onScroll));
       cancelAnimationFrame(frame);
       track.style.removeProperty('--slide');
     };

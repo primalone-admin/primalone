@@ -119,12 +119,12 @@ export const originPage = {
   disclaimer: 'These statements have not been evaluated by the Food and Drug Administration or equivalent authority. This product is not intended to diagnose, treat, cure, or prevent any disease. Food supplements should not be used as a substitute for a varied diet.',
   // Product page layout: gallery (turning jar first), quick facts, the ritual in three steps
   tag: 'Daily Essentials',
-  scrub: '/video/origin-scrub.mp4',
+  scrub: '/video/origin-scrub.mp4?v=alpha1',
   gallery: [
-    { name: 'origin-jar', alt: 'The green Origin jar with its walnut lid beside a scoop of powder' },
-    { name: 'origin-pour', alt: 'Origin powder pouring from a walnut scoop into a glass of water' },
-    { name: 'sage-powder', alt: 'A mound of Origin powder with a walnut spoon' },
-    { name: 'powder-pour', alt: 'Origin powder falling from a walnut scoop' },
+    { name: 'origin-jar', alt: 'Origin tub and sachets with a glass of Origin in morning light' },
+    { name: 'origin-pour', alt: 'Origin tub beside orange halves as a sachet pours green powder into iced water' },
+    { name: 'sage-powder', alt: 'Origin tub and sachets at a sunny outdoor picnic' },
+    { name: 'powder-pour', alt: 'Origin sachet pouring into a PrimalOne bottle' },
   ],
   // Quick facts: each one says something the rest of the page does not
   facts: [
@@ -149,7 +149,6 @@ export const originPage = {
   hero: 'sage-powder',
   cutout: 'origin-jar-cutout',
   lifestyle: 'powder-pour',
-  detail: 'powder-pour-cut',
 };
 
 export const restorePage = {
@@ -194,11 +193,12 @@ export const restorePage = {
   ],
   disclaimer: 'These statements have not been evaluated by the Food and Drug Administration or equivalent authority. This product is not intended to diagnose, treat, cure, or prevent any disease.',
   tag: 'Night Recovery',
-  scrub: '/video/restore-scrub.mp4',
+  scrub: '/video/restore-scrub.mp4?v=alpha1',
   gallery: [
-    { name: 'restore-jar', alt: 'The cream Restore jar with a walnut lid and a scoop of pale powder' },
-    { name: 'restore-evening', alt: 'Restore jar, a glass of Restore and a sachet on a dark green table' },
-    { name: 'restore-dusk', alt: 'A hand holding a glass of Restore beside the jar in warm lamplight' },
+    { name: 'restore-jar', alt: 'Restore tub and sachets with green apple in evening light' },
+    { name: 'restore-evening', alt: 'Restore tub beside a glass as a Restore sachet pours into water' },
+    { name: 'restore-dusk', alt: 'Restore tub and sachet on a bedside table in warm lamplight' },
+    { name: 'restore-sachet', alt: 'A hand holding a Restore single-serve sachet' },
   ],
   facts: [
     { k: '30–60 min', v: 'Before bed' },
@@ -221,7 +221,6 @@ export const restorePage = {
   hero: 'bottle-tilt',
   cutout: 'restore-jar-cutout',
   lifestyle: 'fitness',
-  detail: 'bottle-tilt',
 };
 
 // Origin + Restore together: shown on both product pages
@@ -396,15 +395,15 @@ export const aboutPage = {
         gap: 'Greens & minerals', gapBody: 'Leafy greens and a steady mineral floor are the first things a repeat plate leaves out.',
       },
       {
-        icon: 'sun', photo: 'origin-pour', pos: '62% 40%', reality: 'Rushed mornings', realityBody: 'Breakfast happens, but it is the same quick thing most days.',
+        icon: 'sun', photo: 'rushed-mornings', pos: '50% 45%', reality: 'Rushed mornings', realityBody: 'Breakfast happens, but it is the same quick thing most days.',
         gap: 'Vitamin D3 & omega‑3s', gapBody: 'Indoor days and few oily-fish meals make these two common shortfalls.',
       },
       {
-        icon: 'box', photo: 'origin-sachet', pos: '50% 45%', reality: 'Days on the go', realityBody: 'Snacks and ready food fill the gaps between meals on busy days.',
+        icon: 'box', photo: 'days-on-go', pos: '50% 50%', reality: 'Days on the go', realityBody: 'Snacks and ready food fill the gaps between meals on busy days.',
         gap: 'Fibre & gut support', gapBody: 'Refined, packaged food often brings little of the fibre whole foods provide.',
       },
       {
-        icon: 'moon', photo: 'restore-dusk', pos: '60% 50%', reality: 'Long days, short nights', realityBody: 'Work, screens and stress push wind-down and sleep to the bottom of the list.',
+        icon: 'moon', photo: 'late-desk', pos: '45% 40%', reality: 'Long days, short nights', realityBody: 'Work, screens and stress push wind-down and sleep to the bottom of the list.',
         gap: 'Evening recovery', gapBody: 'Overnight is when much of the body’s repair happens, and it is easy to shortchange.',
       },
     ],
@@ -455,7 +454,7 @@ export const aboutPage = {
         why: 'Most people do not stay perfectly consistent with food quality, travel, work stress or seasonal changes. Origin is built as the constant layer that stays in the routine for years, not weeks. It supports the systems that quietly affect energy, recovery, immunity and how you feel day to day.',
       },
       restore: {
-        tab: 'Night', kicker: 'Night Recovery', img: 'restore-dusk', imgAlt: 'Restore jar and glass in evening light',
+        tab: 'Night', kicker: 'Night Recovery', img: 'restore-dusk', imgAlt: 'Restore tub and glass in evening light',
         intro: 'Restore is the night companion for people who want support around wind-down, recovery and overnight repair. It is taken separately from the morning scoop.',
         supportsTitle: 'What Restore supports',
         supports: [
@@ -634,13 +633,19 @@ export const contactPage = {
 
 // Short policies. Returns, Privacy and Terms are full documents in legal.js
 export const legalPages = {
+  // From Section 7 "Shipping and Delivery" of the Terms and Conditions
   shipping: {
     title: 'Shipping',
-    lead: 'How orders are processed and delivered.',
+    lead: 'How orders are confirmed, dispatched and delivered across India.',
     body: [
-      'Delivery timelines and carrier details are confirmed at checkout. We do not offer cash on delivery.',
-      'Orders typically process within 1–2 business days. Transit times vary by destination.',
-      'For shipment questions, contact us with your order reference.',
+      { h: 'How we deliver', icon: 'truck', key: 'Courier delivery to your address', t: 'All products purchased from the Website are delivered by the Company through standard courier services of its logistics partner(s), to the shipping address you give us (as long as that address is within our shipping restrictions).' },
+      { h: 'Delivery time', icon: 'box', key: 'Within 14 working days of payment', t: 'Orders placed Monday to Friday (excluding public holidays) have an estimated delivery time of within fourteen (14) working days from confirmation of payment. This can vary with online security checks, payment authorisation, packing and dispatch, shipping restrictions or force majeure. An estimated delivery time is shown on the order summary page and in your order confirmation email.' },
+      { h: 'Order confirmation', icon: 'mail', key: 'Email with summary and delivery estimate', t: 'We send an email confirmation for every order we receive, with a summary of the order and the estimated delivery time to your location. An email confirmation does not by itself mean we have accepted the order. We may ask to verify information before accepting or shipping an order, and we may, with notice to you, limit the quantity of a product or refuse service.' },
+      { h: 'Delays', icon: 'info', key: 'Delayed too long? You can return it', t: 'Delivery can sometimes take longer because of bad weather, flight delays, political disruptions, logistical impediments, force majeure or other unforeseen circumstances. We are not responsible for delays in delivery. If a delay means you can no longer benefit from the products, you may return them and claim a refund under our Return, Refund and Cancellation Policy.' },
+      { h: 'Where we deliver', icon: 'pin', key: 'Anywhere in India', t: 'We deliver only within the territorial boundaries of India. If you buy several products in one order, we may deliver them together, though this depends on stock and logistics. To send products to different addresses, please place separate orders with a delivery address for each.' },
+      { h: 'Receiving your order', icon: 'user', key: 'Anyone at the address can receive it', t: 'Delivery can be made to the person present at the shipping address you provide. If you cannot be reached or do not accept delivery, we may cancel the order and refund any payment already made, and we will let you know.' },
+      { h: 'Cancelling before dispatch', icon: 'close', key: 'Free cancellation until it ships', t: 'You may cancel an order before it is shipped. For prepaid orders, the amount is refunded to the original payment source or wallet once the cancellation is complete. Orders that have already shipped cannot be cancelled; please start a return once you receive them.' },
+      { h: 'Returns and refunds', icon: 'refresh', key: 'Covered by our Returns policy', t: 'For returns, refunds, exchanges or cancellations, please see our Return, Refund and Cancellation Policy. Nothing here limits your return or cancellation rights under applicable law.' },
     ],
   },
 };
@@ -652,7 +657,7 @@ export const accountPage = {
   title: 'Your account',
   sub: 'Sign in to see your orders, track deliveries, and reorder Origin and Restore.',
   help: [
-    { q: 'When will my order ship?', a: 'Orders typically process within 1–2 business days. Transit times vary by destination.' },
+    { q: 'When will my order arrive?', a: 'Orders are delivered within 14 working days of payment confirmation. The estimated delivery time is shown on your order summary and confirmation email.' },
     { q: 'How do I change my delivery details?', a: 'Contact us with your order reference and we will help.' },
     { q: 'Which payment methods do you accept?', a: 'UPI, cards and net banking. We do not offer cash on delivery.' },
   ],

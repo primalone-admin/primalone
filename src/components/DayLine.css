@@ -18,9 +18,9 @@
 .day-card__img { position: absolute; inset: 0; z-index: -1; }
 .day-card__img img { transition: scale 1.4s var(--ease-out); }
 .day-card:hover .day-card__img img { scale: 1.06; }
-.day-card--morning .day-card__img img { object-position: 50% 45%; }
+.day-card--morning .day-card__img img { object-position: 55% 40%; }
 .day-card--day .day-card__img img { object-position: 50% 55%; }
-.day-card--night .day-card__img img { object-position: 60% 50%; }
+.day-card--night .day-card__img img { object-position: 48% 42%; }
 /* an even veil so the white type reads on every photo, a touch deeper at night */
 .day-card::after {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;

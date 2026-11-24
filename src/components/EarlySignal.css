@@ -211,29 +211,30 @@
 .vquote { scroll-snap-align: start; }
 .vquote__frame {
   position: relative; margin: 0; overflow: hidden; border-radius: 22px;
-  aspect-ratio: 3 / 4; background: var(--forest-2); isolation: isolate;
+  aspect-ratio: 9 / 16; background: var(--forest-2); isolation: isolate;
 }
-.vquote__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: scale 1.2s var(--ease-out), filter .6s; }
-.vquote:hover .vquote__media { scale: 1.04; }
+.vquote__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: scale 1.2s var(--ease-out), filter .6s; }
+.vquote:hover .vquote__media { scale: 1.03; }
 .vquote__frame::after {
   content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background: linear-gradient(180deg, rgba(14, 27, 18, 0) 45%, rgba(14, 27, 18, .78) 100%);
   transition: background .5s var(--ease-out);
 }
-.vquote.is-open .vquote__frame::after { background: rgba(14, 27, 18, .78); }
+.vquote.is-open .vquote__frame::after {
+  background: linear-gradient(180deg, rgba(14, 27, 18, 0) 40%, rgba(14, 27, 18, .72) 100%);
+}
 .vquote__play {
   position: absolute; left: 50%; top: 50%; z-index: 2; translate: -50% -50%;
   width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center;
   background: rgba(246, 241, 231, .2); color: #fff; border: 0;
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
-  transition: scale .3s var(--ease-out), background .3s, top .5s var(--ease-out);
+  transition: scale .3s var(--ease-out), background .3s;
 }
 .vquote__play svg { margin-left: 2px; }
-.vquote.is-open .vquote__play svg { margin-left: 0; }
 .vquote__play:hover { scale: 1.08; background: rgba(246, 241, 231, .32); }
 .vquote__play:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 3px; }
-.vquote.is-open .vquote__play { top: 18%; }
+.vquote.is-open .vquote__media { cursor: pointer; }
 .vquote__cap {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: clamp(18px, 1.8vw, 24px);
   display: flex; flex-direction: column; gap: 4px; color: #fff;

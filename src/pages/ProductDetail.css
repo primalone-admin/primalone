@@ -246,7 +246,7 @@
 @media (prefers-reduced-motion: reduce) { .pd-gal__bar { display: none; } }
 
 /* The hero photo shows the jar lid: crop from the bottom, not the top */
-.pd-gal__slide:first-child img { object-position: 50% 30%; }
+.pd-gal__slide:first-child img { object-position: 48% 42%; }
 
 /* What Origin is not: three cards, "It's not" above "It is" */
 .pd-myth__head { margin-bottom: clamp(28px, 3vw, 44px); }

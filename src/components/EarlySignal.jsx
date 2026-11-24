@@ -41,29 +41,50 @@ function CountUp({ value }) {
 }
 
 // One video testimonial: portrait poster, play button, name and stars over the frame.
-// Plays the member's clip inline when one is supplied; until then play reveals their quote.
-function VideoQuote({ q, i }) {
-  const [open, setOpen] = useState(false);
+// Only one clip plays at a time — the parent owns `active` and pauses siblings.
+function VideoQuote({ q, i, active, onActivate }) {
+  const open = active === i;
   const videoRef = useRef(null);
-  const toggle = () => {
+
+  useEffect(() => {
     const v = videoRef.current;
-    if (v) { if (v.paused) { v.play().catch(() => {}); setOpen(true); } else { v.pause(); setOpen(false); } return; }
-    setOpen((o) => !o);
-  };
+    if (!v || !q.video) return undefined;
+    if (open) {
+      v.play().catch(() => {});
+      return undefined;
+    }
+    v.pause();
+    v.currentTime = 0;
+    return undefined;
+  }, [open, q.video]);
+
+  const toggle = () => onActivate(open ? null : i);
+
   return (
     <Reveal as="li" delay={140 + i * 100} className={`vquote ${open ? 'is-open' : ''}`}>
       <figure className="vquote__frame">
         {q.video
-          ? <video ref={videoRef} className="vquote__media" src={q.video} poster={`/img/${q.poster.name}-640.webp`} playsInline preload="none" onEnded={() => setOpen(false)} />
+          ? (
+            <video
+              ref={videoRef}
+              className="vquote__media"
+              src={q.video}
+              poster={`/img/${q.poster.name}-640.webp`}
+              playsInline
+              loop
+              preload="metadata"
+              onClick={() => open && onActivate(null)}
+            />
+          )
           : <Img className="vquote__media" name={q.poster.name} alt={q.poster.alt} sizes="(min-width: 992px) 24vw, 70vw" />}
-        <button type="button" className="vquote__play" onClick={toggle} aria-pressed={open}
-          aria-label={q.video ? `${open ? 'Pause' : 'Play'} video from ${q.who}, ${q.meta}` : `${open ? 'Hide' : 'Read'} the quote from ${q.who}, ${q.meta}`}>
-          <Icon name={open ? 'pause' : 'play'} size={22} />
-        </button>
+        {!open && (
+          <button type="button" className="vquote__play" onClick={toggle}
+            aria-label={q.video ? `Play video from ${q.who}, ${q.meta}` : `Read the quote from ${q.who}, ${q.meta}`}>
+            <Icon name="play" size={22} />
+          </button>
+        )}
         <figcaption className="vquote__cap">
-          {!q.video && (
-            <blockquote className="vquote__quote"><p>{q.text}</p></blockquote>
-          )}
+          <blockquote className="vquote__quote"><p>{q.text}</p></blockquote>
           <Stars rating={q.rating ?? 5} />
           <span className="vquote__who">{q.who}</span>
           <span className="vquote__meta mono">{q.meta}</span>
@@ -75,6 +96,7 @@ function VideoQuote({ q, i }) {
 
 function VideoQuotes({ quotes }) {
   const rowRef = useRef(null);
+  const [active, setActive] = useState(null);
   const step = (dir) => {
     const row = rowRef.current;
     const card = row?.querySelector('.vquote');
@@ -83,7 +105,9 @@ function VideoQuotes({ quotes }) {
   return (
     <div className="vquotes">
       <ul ref={rowRef} className="vquotes__row">
-        {quotes.map((q, i) => <VideoQuote key={q.meta} q={q} i={i} />)}
+        {quotes.map((q, i) => (
+          <VideoQuote key={q.meta} q={q} i={i} active={active} onActivate={setActive} />
+        ))}
       </ul>
       <div className="vquotes__nav">
         <button type="button" onClick={() => step(-1)} aria-label="Previous testimonial"><Icon name="arrow" size={18} className="is-flipped" /></button>

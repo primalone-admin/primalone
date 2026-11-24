@@ -42,10 +42,10 @@ export default function Learn() {
           <div className="learn__glow" aria-hidden="true" />
           <img
             className="learn__bottle"
-            src={`/img/${learn.image.name}.webp`}
+            src={`/img/${learn.image.name}.webp?v=4`}
             alt={learn.image.alt}
-            width={900}
-            height={1200}
+            width={1200}
+            height={900}
             loading="lazy"
             decoding="async"
           />

@@ -7,7 +7,9 @@ dist/
 
 # Huge raw source media (keep processed files in public/ only)
 *.mov
+*.zip
 assets/Color Matte_1.mov
+India - Sachet Packaging.pdf
 
 # Local / OS
 .env

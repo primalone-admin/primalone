@@ -19,18 +19,19 @@
 /* overflow hidden keeps the slow zoom inside the box, under the blend gradient */
 .hero__photo { position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity 1.4s var(--ease); }
 .hero__photo.is-active { opacity: 1; }
-.hero__photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); }
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.03); }
 .hero__photo.is-active img { animation: hero-drift 9s var(--ease-out) both; }
-.hero__photo--morning img { object-position: 92% 55%; }
-.hero__photo--evening img { object-position: 82% 50%; }
-@keyframes hero-drift { from { transform: scale(1.12); } to { transform: scale(1.02); } }
+/* Pull subjects into the clear right of the media (left edge is soft-blended into copy) */
+.hero__photo--morning img { object-position: 78% 50%; }
+.hero__photo--evening img { object-position: 78% 50%; }
+@keyframes hero-drift { from { transform: scale(1.06); } to { transform: scale(1.01); } }
 
 /* Soft edge where the photo meets the page colour; one layer per scene so it can cross-fade */
 .hero__media::before, .hero__media::after {
   content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; transition: opacity 1.3s var(--ease);
 }
-.hero__media::before { background: linear-gradient(90deg, var(--paper) 0%, rgba(251, 248, 242, .6) 16%, rgba(251, 248, 242, 0) 42%); }
-.hero__media::after { background: linear-gradient(90deg, var(--night) 0%, rgba(14, 27, 18, .55) 18%, rgba(14, 27, 18, 0) 46%); opacity: 0; }
+.hero__media::before { background: linear-gradient(90deg, var(--paper) 0%, rgba(251, 248, 242, .72) 8%, rgba(251, 248, 242, 0) 26%); }
+.hero__media::after { background: linear-gradient(90deg, var(--night) 0%, rgba(14, 27, 18, .65) 10%, rgba(14, 27, 18, 0) 30%); opacity: 0; }
 .hero.is-night .hero__media::before { opacity: 0; }
 .hero.is-night .hero__media::after { opacity: 1; }
 
@@ -114,8 +115,8 @@
   .hero__inner { display: contents; }
   .hero__copy { grid-row: 1; padding: 28px var(--gutter) 32px; max-width: 680px; }
   .hero__media { position: relative; grid-row: 2; width: 100%; aspect-ratio: 5 / 4; z-index: 0; }
-  .hero__photo--morning img { object-position: 78% 50%; }
-  .hero__photo--evening img { object-position: 72% 50%; }
+  .hero__photo--morning img { object-position: 55% 50%; }
+  .hero__photo--evening img { object-position: 78% 50%; }
   .hero__media::before { background: linear-gradient(180deg, var(--paper) 0%, rgba(251, 248, 242, 0) 26%); }
   .hero__media::after { background: linear-gradient(180deg, var(--night) 0%, rgba(14, 27, 18, 0) 30%); }
   .hero__dock { grid-row: 3; position: relative; right: auto; bottom: auto; width: auto; padding-inline: var(--gutter); margin-top: -58px; z-index: 1; }

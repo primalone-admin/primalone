@@ -131,7 +131,7 @@ export const privacyDoc = {
         },
         {
           "n": "3.1.7",
-          "t": "for marketing and advertising, and in this regard, to send you by various mediums and modes of communication marketing and promotional information and materials relating to products and/or services (including products and/or services of third parties whom we may collaborate or tie up with) that we may be selling, marketing or promoting or to offer loyalty, partner and bonus programs and offers. In case you do not wish us to use your Personal Data for the aforesaid purpose, you may opt out at any time by clicking the “unsubscribe” link in a message that we send to you or sending an email to support@primalone.in with the header “Unsubscribe”."
+          "t": "for marketing and advertising, and in this regard, to send you by various mediums and modes of communication marketing and promotional information and materials relating to products and/or services (including products and/or services of third parties whom we may collaborate or tie up with) that we may be selling, marketing or promoting or to offer loyalty, partner and bonus programs and offers. In case you do not wish us to use your Personal Data for the aforesaid purpose, you may opt out at any time by clicking the “unsubscribe” link in a message that we send to you or sending an email to hello@primalone.in with the header “Unsubscribe”."
         },
         {
           "n": "3.1.8",
@@ -353,7 +353,7 @@ export const privacyDoc = {
       "blocks": [
         {
           "n": "9.1",
-          "t": "If you have any questions or complaints about or relating to the Personal Data collected by the Company or wishes to contact the Company under the terms of this Privacy Policy, you may contact us using the “Contact Us” details on the Website or at the following email address: support@primalone.in."
+          "t": "If you have any questions or complaints about or relating to the Personal Data collected by the Company or wishes to contact the Company under the terms of this Privacy Policy, you may contact us using the “Contact Us” details on the Website or at the following email address: hello@primalone.in."
         }
       ],
       "id": "contacting-the-company"
@@ -907,7 +907,7 @@ export const termsDoc = {
       "blocks": [
         {
           "n": "A",
-          "t": "The User Agreement is effective unless and until terminated by either you or us. You may terminate your Account (and hence the User Agreement) at any time by notifying us in writing via email at support@primalone.com of your desire to do so. We may terminate your Account (and hence the User Agreement) at any time by providing twenty four (24) hours advance notice, and accordingly deny you access to the Website and/or Services. Such termination will be without any liability to the Company. Upon termination, you must promptly destroy all materials downloaded or otherwise obtained from the Website, as well as all copies of such materials, whether made under the User Agreement or otherwise. Our right to any Comments shall survive any termination of your Account. Any such termination of your Account shall not cancel your obligation to pay for Products already ordered from the Website or affect any liability that may have arisen prior to termination."
+          "t": "The User Agreement is effective unless and until terminated by either you or us. You may terminate your Account (and hence the User Agreement) at any time by notifying us in writing via email at hello@primalone.in of your desire to do so. We may terminate your Account (and hence the User Agreement) at any time by providing twenty four (24) hours advance notice, and accordingly deny you access to the Website and/or Services. Such termination will be without any liability to the Company. Upon termination, you must promptly destroy all materials downloaded or otherwise obtained from the Website, as well as all copies of such materials, whether made under the User Agreement or otherwise. Our right to any Comments shall survive any termination of your Account. Any such termination of your Account shall not cancel your obligation to pay for Products already ordered from the Website or affect any liability that may have arisen prior to termination."
         },
         {
           "n": "B",
@@ -1113,11 +1113,11 @@ export const termsDoc = {
       "contacts": [
         {
           "label": "Customer Care",
-          "email": "support@primalone.com"
+          "email": "hello@primalone.in"
         },
         {
           "label": "Grievance Officer",
-          "email": "privacy@primalone.com"
+          "email": "hello@primalone.in"
         }
       ]
     },
@@ -1214,7 +1214,7 @@ export const returnsDoc = {
       "blocks": [
         {
           "n": "A",
-          "t": "Subject to the terms and conditions in this Returns Policy, you may apply for a cancellation of a placed order, return, refund or exchange of a product purchased from the PrimalOne website (including its mobile version) and mobile application (collectively the “Website”). To initiate a cancellation, return, refund or exchange, you can write us at support@primalone.com.",
+          "t": "Subject to the terms and conditions in this Returns Policy, you may apply for a cancellation of a placed order, return, refund or exchange of a product purchased from the PrimalOne website (including its mobile version) and mobile application (collectively the “Website”). To initiate a cancellation, return, refund or exchange, you can write us at hello@primalone.in.",
           "body": [],
           "label": "How to apply"
         },

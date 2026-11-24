@@ -223,8 +223,8 @@
 .xa-tog__day { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; min-height: 380px; border-radius: 28px; overflow: hidden; background: var(--night); }
 .xa-tog__half { position: relative; margin: 0; overflow: hidden; }
 .xa-tog__half img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: scale 1.4s var(--ease-out); }
-.xa-tog__half--am img { object-position: 50% 40%; }
-.xa-tog__half--pm img { object-position: 80% 50%; }
+.xa-tog__half--am img { object-position: 48% 42%; }
+.xa-tog__half--pm img { object-position: 50% 45%; }
 .xa-tog__half:hover img { scale: 1.06; }
 .xa-tog__half::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10, 20, 14, .72)); pointer-events: none; }
 .xa-tog__half figcaption { position: absolute; z-index: 1; left: 16px; right: 16px; bottom: 16px; display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 10px; align-items: center; color: #fff; }

@@ -43,13 +43,13 @@ export const hero = {
       id: 'morning',
       product: 'Origin',
       note: 'One scoop with or after breakfast',
-      image: { name: 'origin-pour', alt: 'A walnut scoop pouring Origin powder into a glass of water in morning sunlight, beside the green Origin jar' },
+      image: { name: 'origin-pour', alt: 'Origin tub beside orange halves as a sachet pours green powder into iced water' },
     },
     {
       id: 'evening',
       product: 'Restore',
       note: '30 to 60 minutes before bed',
-      image: { name: 'restore-evening', alt: 'The cream Restore jar, a glass of Restore and a sachet on a dark green table under a crescent moon' },
+      image: { name: 'restore-evening', alt: 'Restore tub beside a glass as a Restore sachet pours into water' },
     },
   ],
 };
@@ -72,7 +72,7 @@ export const products = {
       { text: 'One scoop with or after breakfast. Not a protein shake. ', strong: 'The daily if you eat.' },
     ],
     // scrub: the jar's 360° turn (every frame a keyframe) that the homepage scrubs with scroll
-    image: { name: 'origin-jar', video: '/video/origin.mp4', scrub: '/video/origin-scrub.mp4', alt: 'The green PrimalOne Origin jar with a walnut lid beside a scoop of powder' },
+    image: { name: 'origin-jar', video: '/video/origin.mp4', scrub: '/video/origin-scrub.mp4?v=alpha1', turn: '/video/origin-turn.webm?v=alpha3', alt: 'The PrimalOne Origin tub and sachets' },
     containsTitle: 'Origin contains',
     contains: ['Omega-3s (EPA + DHA)', 'Vitamin D3 & K2', 'A modest mineral floor', 'CoQ10', 'Greens', 'Multi-strain probiotic', 'Prebiotic fibre (PHGG)'],
     meta: ['One 20 g scoop', 'in water or a smoothie'],
@@ -83,7 +83,7 @@ export const products = {
     shopTag: 'Daily Essentials',
     shopCopy: 'The morning scoop when breakfast is eaten.',
     ctaPrefix: 'Buy Origin',
-    shopImage: { name: 'origin-stir', alt: 'Origin jar beside a glass being stirred in morning light' },
+    shopImage: { name: 'origin-stir', alt: 'Origin tub and sachets on a desk beside a glass of Origin' },
     sizes: [
       { days: 30, price: 3499, perDay: 117 },
       { days: 15, price: 1999, perDay: 133 },
@@ -98,7 +98,7 @@ export const products = {
       'An evening formula to support relaxation and recovery at the end of the day. Take it if you want the night covered. Skip it if you do not.',
       { text: '30 to 60 minutes before bed, with or without food. ', strong: 'Many people use Origin alone.' },
     ],
-    image: { name: 'restore-jar', scrub: '/video/restore-scrub.mp4', alt: 'PrimalOne Restore jar with walnut scoop in evening light' },
+    image: { name: 'restore-jar', video: '/video/restore.mp4', scrub: '/video/restore-scrub.mp4?v=alpha1', turn: '/video/restore-turn.webm?v=alpha3', alt: 'The PrimalOne Restore tub and sachets' },
     containsTitle: 'Restore contains',
     contains: ['Glycine (3 g)', 'NAC (600 mg)', 'Magnesium', 'KSM-66® ashwagandha', 'Myo-inositol'],
     meta: ['Evening only', 'never taken with Origin'],
@@ -108,7 +108,7 @@ export const products = {
     shopTag: 'Night Recovery',
     shopCopy: 'The optional night. Glycine, NAC, magnesium, and ashwagandha.',
     ctaPrefix: 'Add to evening routine',
-    shopImage: { name: 'restore-evening', alt: 'PrimalOne Restore evening ritual with jar, sachet and glass' },
+    shopImage: { name: 'restore-evening', alt: 'PrimalOne Restore evening ritual with tub, sachet and glass' },
     sizes: [
       { days: 30, price: 3999, perDay: 133 },
       { days: 15, price: 2299, perDay: 153 },
@@ -148,7 +148,7 @@ export const how = {
       time: 'Morning, with or after breakfast',
       title: 'Origin.',
       body: 'One scoop (20 g) in water or a smoothie. Every morning you eat.',
-      image: { name: 'origin-stir', alt: 'Origin being stirred into a glass in morning sunlight' },
+      image: { name: 'origin-stir', alt: 'Origin tub on a morning desk beside a glass of Origin' },
       tone: 'morning',
     },
     {
@@ -163,7 +163,7 @@ export const how = {
       title: 'Restore.',
       optional: true,
       body: 'With or without food, if you want the night covered.',
-      image: { name: 'restore-dusk', alt: 'A hand holding a glass of Restore beside the cream Restore jar in warm lamplight' },
+      image: { name: 'restore-dusk', alt: 'Restore tub and sachet on a bedside table in warm lamplight' },
       tone: 'night',
       safety: true,
     },
@@ -173,7 +173,7 @@ export const how = {
 export const benefits = {
   titleLines: ['What each scoop', 'is built to do.'],
   video: {
-    // Golden figure on a flat sand ground (from assets/Color Matte_2.mp4, #ebe4d4).
+    // Golden figure on a flat sand ground (#ebe4d4).
     src: '/video/scoop-figure-2.mp4',
     label: 'Inside a PrimalOne scoop',
   },
@@ -210,8 +210,8 @@ export const learn = {
   titleLines: ['The thinking,', 'in three short reads.'],
   lead: 'You do not need a cabinet. You need the right thing at the right time.',
   image: {
-    name: 'bottle-tilt-cutout',
-    alt: 'PrimalOne bottle tilted beside a sage drink',
+    name: 'learn-bottle',
+    alt: 'PrimalOne bottle with green drink, tilted',
   },
   reads: [
     {
@@ -249,8 +249,8 @@ export const signal = {
       who: 'Beta participant',
       meta: '34 · Bengaluru',
       rating: 5,
-      // video: the member's testimonial clip (to be supplied); poster: their portrait
-      video: null,
+      // Gym location UGC
+      video: '/video/testimonial-01.mp4',
       poster: { name: 'beta-portrait-1', alt: 'Beta participant from Bengaluru' },
     },
     {
@@ -258,7 +258,8 @@ export const signal = {
       who: 'Beta participant',
       meta: '29 · Delhi',
       rating: 5,
-      video: null,
+      // Breakfast table UGC
+      video: '/video/testimonial-02.mp4',
       poster: { name: 'beta-portrait-2', alt: 'Beta participant from Delhi' },
     },
     {
@@ -266,7 +267,8 @@ export const signal = {
       who: 'Beta participant',
       meta: '41 · Mumbai',
       rating: 5,
-      video: null,
+      // Living room UGC
+      video: '/video/testimonial-03.mp4',
       poster: { name: 'beta-portrait-3', alt: 'Beta participant from Mumbai' },
     },
   ],
@@ -283,7 +285,7 @@ export const faq = {
   lead: 'Clean answers about how Origin and Restore fit your day.',
   image: {
     name: 'ritual-set',
-    alt: 'PrimalOne Origin, Restore and bottle on a light surface',
+    alt: 'PrimalOne Origin and Restore tubs with sachets side by side',
   },
   items: [
     { q: 'Is Origin vegetarian?', a: 'Depends on the omega-3 source (fish oil or algal oil). Check the FSSAI veg/non-veg symbol on the pack.' },

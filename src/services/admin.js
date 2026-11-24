@@ -144,7 +144,7 @@ function fresh() {
       at: new Date(now - m.hours * 36e5).toISOString(),
     })),
     settings: {
-      store: { name: 'PrimalOne', legal: 'Primalone Nutrition Pvt Ltd', email: '', phone: '', gstin: '', fssai: '', address: '' },
+      store: { name: 'PrimalOne', legal: 'Primalone Nutrition Pvt Ltd', email: 'hello@primalone.in', phone: '', gstin: '', fssai: '', address: '' },
       grievance: { name: '', email: '' },
       shipping: { freeAbove: 0, flat: 0, processing: '1–2 business days', cod: false },
       payments: { upi: true, card: true, netbanking: true, gateway: 'Razorpay', connected: false },
@@ -155,7 +155,7 @@ function fresh() {
     team: [
       { id: 't1', name: 'Rakesh', email: 'rakesh@primalone.in', role: 'Owner', active: true },
       { id: 't2', name: 'Yash', email: 'yash@primalone.in', role: 'Owner', active: true },
-      { id: 't3', name: 'Support desk', email: 'support@primalone.in', role: 'Support', active: true },
+      { id: 't3', name: 'Support desk', email: 'hello@primalone.in', role: 'Support', active: true },
     ],
     activity: [],
   };

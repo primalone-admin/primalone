@@ -141,7 +141,7 @@ export function GapSection() {
             const pr = products[s.id];
             return (
               <Reveal key={s.id} delay={i * 120} className={`xa-sol xa-sol--${s.id}`} style={{ gridColumn: `span ${s.span}` }}>
-                <span className="xa-sol__img"><Img name={`${s.id}-jar`} alt={`${pr.name} jar`} sizes="(min-width: 992px) 220px, 60vw" /></span>
+                <span className="xa-sol__img"><Img name={`${s.id}-jar`} alt={`${pr.name} tub`} sizes="(min-width: 992px) 220px, 60vw" /></span>
                 <div className="xa-sol__body">
                   <span className="xa-sol__when"><Icon name={s.id === 'origin' ? 'sun' : 'moon'} size={14} /> {s.when}</span>
                   <h3>{pr.name}</h3>
@@ -199,7 +199,7 @@ export function PhilosophySection() {
 
         <div className="xa-phil__mosaic">
           <Reveal className="xa-phil__big">
-            <Img name="origin-scoop" alt="Origin powder spilling from a walnut scoop" sizes="(min-width: 992px) 46vw, 92vw" />
+            <Img name="origin-scoop" alt="Origin tub and sachets at a sunny picnic" sizes="(min-width: 992px) 46vw, 92vw" />
             <span className="xa-phil__tag">{d.tag}</span>
           </Reveal>
           <Reveal delay={120} className="xa-phil__small">
@@ -322,11 +322,11 @@ export function TogetherSection() {
         <div className="xa-tog__grid">
           <Reveal className="xa-tog__day">
             <figure className="xa-tog__half xa-tog__half--am">
-              <Img name="origin-jar" alt="Origin jar in morning light" sizes="(min-width: 1200px) 20vw, (min-width: 576px) 50vw, 50vw" />
+              <Img name="origin-jar" alt="Origin tub in morning light" sizes="(min-width: 1200px) 20vw, (min-width: 576px) 50vw, 50vw" />
               <figcaption><span className="xa-tog__ic"><Icon name="sun" size={16} /></span><b>Origin</b><small>Morning</small></figcaption>
             </figure>
             <figure className="xa-tog__half xa-tog__half--pm">
-              <Img name="restore-evening" alt="Restore jar and glass in the evening" sizes="(min-width: 1200px) 20vw, (min-width: 576px) 50vw, 50vw" />
+              <Img name="restore-evening" alt="Restore tub and glass in the evening" sizes="(min-width: 1200px) 20vw, (min-width: 576px) 50vw, 50vw" />
               <figcaption><span className="xa-tog__ic"><Icon name="moon" size={15} /></span><b>Restore</b><small>Night</small></figcaption>
             </figure>
             <span className="xa-tog__never">Never in the<br />same serving</span>

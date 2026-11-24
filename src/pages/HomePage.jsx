@@ -4,7 +4,6 @@ import WhySequence from '../components/WhySequence.jsx';
 import DayLine from '../components/DayLine.jsx';
 import Benefits from '../components/Benefits.jsx';
 import Learn from '../components/Learn.jsx';
-import FilmBand from '../components/FilmBand.jsx';
 import EarlySignal from '../components/EarlySignal.jsx';
 import Shop from '../components/Shop.jsx';
 import Faq from '../components/Faq.jsx';
@@ -19,7 +18,6 @@ export default function HomePage() {
       <DayLine />
       <Benefits />
       <Learn />
-      <FilmBand />
       <EarlySignal />
       <Shop />
       <Faq />

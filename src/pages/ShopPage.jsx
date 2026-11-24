@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { faqPage, shopPage } from '../data/pages.js';
 import { bundle, footer, products, formatINR } from '../data/content.js';
@@ -33,7 +33,7 @@ function PackSwitch({ value, onChange, label }) {
   );
 }
 
-// One product card: tinted stage with the jar (turns on hover), name, short copy, pack switch, add
+// One product card: still by default, turn video on hover
 function ProductCard({ id, delay }) {
   const p = products[id];
   const { selected, setSelected, add, highlight } = useCart();
@@ -41,10 +41,30 @@ function ProductCard({ id, delay }) {
   const size = priceOf(id, days);
   const videoRef = useRef(null);
   const reduced = useReducedMotion();
+  const turnSrc = p.image.turn || p.image.scrub;
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || reduced || !turnSrc) return undefined;
+    v.preload = 'auto';
+    v.load();
+    return undefined;
+  }, [reduced, turnSrc]);
+
   const spin = (on) => {
     const v = videoRef.current;
-    if (!v || reduced) return;
-    if (on) v.play().catch(() => {}); else v.pause();
+    if (!v || reduced || !turnSrc) return;
+    const card = v.closest('.xs2-card');
+    if (on) {
+      card?.classList.add('is-spin');
+      v.currentTime = 0;
+      const play = v.play();
+      if (play?.catch) play.catch(() => {});
+    } else {
+      card?.classList.remove('is-spin');
+      v.pause();
+      v.currentTime = 0;
+    }
   };
 
   return (
@@ -53,7 +73,10 @@ function ProductCard({ id, delay }) {
         aria-labelledby={`card-${id}`} onPointerEnter={() => spin(true)} onPointerLeave={() => spin(false)}>
         <Link to={`/products/${id}`} className="xs2-card__stage" tabIndex={-1} aria-hidden="true">
           {id === 'origin' && <span className="xs2-card__flag">Start here</span>}
-          <video ref={videoRef} src={p.image.scrub} poster={`/img/${id}-turn-poster.webp`} muted loop playsInline preload="none" />
+          <img className="xs2-card__still" src={`/img/${id}-turn-poster.webp?v=pack6`} alt="" width="360" height="640" decoding="async" />
+          {turnSrc && (
+            <video ref={videoRef} className="xs2-card__video" src={turnSrc} muted loop playsInline preload="auto" />
+          )}
         </Link>
         <div className="xs2-card__body">
           <div className="xs2-card__row">

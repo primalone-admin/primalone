@@ -1,6 +1,8 @@
 .faq {
   background: var(--paper);
   overflow: clip;
+  /* Sit tight under Shop — no empty cream band above the title */
+  padding-block: clamp(36px, 4vw, 56px);
 }
 
 .faq__shell {
@@ -22,13 +24,13 @@
   aspect-ratio: 1;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: #f3eee4;
+  background: var(--paper);
 }
 
 .faq__media img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   transition: transform 1.2s var(--ease-out);
 }
@@ -58,7 +60,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px 24px;
-  margin-bottom: clamp(20px, 2.8vw, 32px);
+  margin-bottom: 0;
 }
 
 .faq__title { letter-spacing: -.045em; max-width: 14ch; }

@@ -24,15 +24,15 @@ const glance = {
     kind: 'timeline',
     title: 'From checkout to your door',
     steps: [
-      { when: 'Checkout', what: 'Your delivery timeline and carrier are confirmed before you pay.' },
-      { when: '1–2 business days', what: 'Your order is processed and handed to the carrier.' },
-      { when: 'In transit', what: 'Transit times vary by destination within India.' },
-      { when: 'Delivered', what: 'Check the parcel and seal as soon as it arrives.' },
+      { when: 'Order placed', what: 'You get an email with your order summary and estimated delivery time.' },
+      { when: 'Verified & packed', what: 'We may verify details before your order is accepted and dispatched.' },
+      { when: 'With the courier', what: 'Shipped by our logistics partner to your address in India.' },
+      { when: 'Within 14 working days', what: 'Estimated delivery, counted from payment confirmation.' },
     ],
     foot: [
-      { icon: 'lock', k: 'Payment', v: 'Online payment at checkout. Cash on delivery is not offered.' },
+      { icon: 'close', k: 'Changed your mind?', v: 'Cancel any time before your order is shipped.' },
       { icon: 'refresh', k: 'Damaged on arrival?', v: 'Tell us within 2 business days of delivery. See the Returns policy.' },
-      { icon: 'mail', k: 'Shipment questions', v: 'support@primalone.com, with your order reference' },
+      { icon: 'mail', k: 'Shipment questions', v: 'hello@primalone.in, with your order reference' },
     ],
   },
   returns: {
@@ -47,7 +47,7 @@ const glance = {
     foot: [
       { icon: 'refresh', k: 'Refunds', v: 'Within 15 business days of approval, to the original payment source' },
       { icon: 'truck', k: 'Returns shipping', v: 'Free, once your request is approved' },
-      { icon: 'mail', k: 'Start a request', v: 'support@primalone.com' },
+      { icon: 'mail', k: 'Start a request', v: 'hello@primalone.in' },
     ],
   },
   privacy: {
@@ -56,7 +56,7 @@ const glance = {
       { icon: 'user', k: 'What we collect', v: 'Details you give us, plus device, browser and cookie data logged when you visit.' },
       { icon: 'lock', k: 'Your rights', chips: ['Access', 'Correct', 'Erase', 'Portability', 'Restrict', 'Withdraw consent'] },
       { icon: 'megaphone', k: 'Marketing', v: 'Opt out any time with the “unsubscribe” link, or email us with the header “Unsubscribe”.' },
-      { icon: 'mail', k: 'Questions', v: 'support@primalone.in' },
+      { icon: 'mail', k: 'Questions', v: 'hello@primalone.in' },
     ],
   },
   terms: {
@@ -537,13 +537,26 @@ function PolicyTabs() {
 
 // Shipping: short policy with a delivery card, a checkout-to-door timeline and the policy points
 const shipFacts = [
-  ['Processing', '1–2 business days'],
-  ['Payment', 'Online only'],
-  ['Carrier', 'Confirmed at checkout'],
-  ['Delivers to', 'India'],
+  ['Delivery', 'Within 14 working days'],
+  ['Counted from', 'Payment confirmation'],
+  ['Shipped by', 'Courier partner'],
+  ['Delivers to', 'India only'],
 ];
 
 function ShortPolicy({ page }) {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const els = page.body.map((_, i) => document.getElementById(`ship-${i + 1}`)).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) setActive(Number(e.target.dataset.i)); });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [page]);
+  const jump = (i) => (e) => {
+    e.preventDefault();
+    document.getElementById(`ship-${i + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
   return (
     <>
       <header className="x-hero xl-hero xl-hero--doc">
@@ -552,7 +565,7 @@ function ShortPolicy({ page }) {
             <PolicyTabs />
             <p className="xl-kicker">Shipping Policy</p>
             <h1 className="x-h1 xl-title">{page.title}<span className="is-accent">.</span></h1>
-            <p className="x-lead">{page.lead} What happens between checkout and your door, and who to ask if a parcel is late.</p>
+            <p className="x-lead">{page.lead}</p>
             <div className="xl-hero__actions">
               <a href="#ship-policy" className="pill" onClick={(e) => { e.preventDefault(); document.getElementById('ship-policy')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}>
                 <span className="pill__label">Read the policy</span>
@@ -591,16 +604,37 @@ function ShortPolicy({ page }) {
         <div className="shell xl-grid">
           <div>
             <p className="xl-kicker">The policy</p>
-            <h2 className="xl-body__title">Three things to know</h2>
-            <ol className="xl-clauses">
+            <h2 className="xl-body__title">Shipping and delivery</h2>
+            <p className="xl-body__sub">Taken from Section 7 of our Terms and Conditions, in plain order.</p>
+            <ol className="xl-sclauses">
               {page.body.map((para, i) => (
-                <Reveal as="li" key={para.slice(0, 28)} delay={i * 80} className="xl-clause">
-                  <span className="xl-clause__n">{String(i + 1).padStart(2, '0')}</span>
-                  <p>{para}</p>
+                <Reveal as="li" key={para.h} delay={Math.min(i, 2) * 70} className={`xl-sclause${active === i ? ' is-on' : ''}`}>
+                  <div id={`ship-${i + 1}`} data-i={i} className="xl-sclause__in">
+                    <span className="xl-sclause__ic" aria-hidden="true"><Icon name={para.icon} size={20} /></span>
+                    <div>
+                      <p className="xl-sclause__n">7.{i + 1}</p>
+                      <h3 className="xl-sclause__h">{para.h}</h3>
+                      <p className="xl-sclause__key"><Icon name="check" size={14} />{para.key}</p>
+                      <p className="xl-sclause__t">{para.t}</p>
+                    </div>
+                  </div>
                 </Reveal>
               ))}
             </ol>
           </div>
+          <div className="xl-sside">
+          <nav className="xl-stoc" aria-label="On this page">
+            <p className="xl-kicker">On this page</p>
+            <ol>
+              {page.body.map((para, i) => (
+                <li key={para.h}>
+                  <a href={`#ship-${i + 1}`} onClick={jump(i)} className={active === i ? 'is-on' : undefined} aria-current={active === i ? 'true' : undefined}>
+                    <span>{String(i + 1).padStart(2, '0')}</span>{para.h}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
           <aside className="xl-help on-night">
             <span className="xl-help__ic"><Icon name="mail" size={20} /></span>
             <h2 className="x-h3">Where is my order?</h2>
@@ -610,6 +644,7 @@ function ShortPolicy({ page }) {
               <span className="pill__arrow" aria-hidden="true"><Icon name="arrow" size={16} /></span>
             </Link>
           </aside>
+          </div>
         </div>
       </section>
 

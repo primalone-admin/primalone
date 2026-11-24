@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { products, shop, formatINR } from '../data/content.js';
 import { useCart } from '../context/CartContext.jsx';
@@ -6,8 +6,7 @@ import { useReducedMotion } from '../hooks/motion.js';
 import { Button, Reveal, SplitLines, TextLink } from './ui/primitives.jsx';
 import './Shop.css';
 
-// Compact product card (after seed.com's product row): a timing pill, the name, the jar that
-// turns while the card is hovered, a small pack-size switch, and one button.
+// Compact product card: still by default, turn video plays immediately on hover.
 function PackCard({ id }) {
   const p = products[id];
   const { selected, setSelected, add, highlight } = useCart();
@@ -16,12 +15,31 @@ function PackCard({ id }) {
   const from = Math.min(...p.sizes.map((s) => s.price));
   const videoRef = useRef(null);
   const reduced = useReducedMotion();
+  const turnSrc = p.image.turn || p.image.scrub;
+
+  // Preload the turn clip so hover can start without a buffer wait.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || reduced || !turnSrc) return undefined;
+    v.preload = 'auto';
+    v.load();
+    return undefined;
+  }, [reduced, turnSrc]);
 
   const spin = (on) => {
     const v = videoRef.current;
-    if (!v || reduced) return;
-    if (on) v.play().catch(() => {});
-    else { v.pause(); v.currentTime = 0; }
+    if (!v || reduced || !turnSrc) return;
+    const card = v.closest('.pack');
+    if (on) {
+      card?.classList.add('is-spin');
+      v.currentTime = 0;
+      const play = v.play();
+      if (play?.catch) play.catch(() => {});
+    } else {
+      card?.classList.remove('is-spin');
+      v.pause();
+      v.currentTime = 0;
+    }
   };
 
   return (
@@ -38,7 +56,18 @@ function PackCard({ id }) {
       <p className="pack__desc">{p.shopDescriptor}</p>
 
       <Link className="pack__jar" to={`/products/${id}`} tabIndex={-1} aria-hidden="true">
-        <video ref={videoRef} src={p.image.scrub} poster={`/img/${id}-turn-poster.webp`} muted loop playsInline preload="none" />
+        <img className="pack__still" src={`/img/${id}-turn-poster.webp?v=pack6`} alt="" width="360" height="640" decoding="async" />
+        {turnSrc && (
+          <video
+            ref={videoRef}
+            className="pack__video"
+            src={turnSrc}
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        )}
       </Link>
 
       <div className="pack__sizes" role="radiogroup" aria-label={`${p.name} pack size`}>

@@ -71,16 +71,23 @@
 .pblock--night .pblock__para { color: var(--muted-dark); }
 .pblock--night .pblock__para strong { color: var(--cream); }
 
-/* The jar card: a white-ground turntable clip multiplied into the card colour */
+/* Product-only alpha video — no card fill, no blend plate */
 .pblock__visual { margin: 0; }
 .pblock__card {
-  position: relative; overflow: hidden; border-radius: var(--radius-lg);
-  aspect-ratio: 4 / 5; width: 100%; max-height: min(64vh, 560px); margin-inline: auto;
-  background: var(--sand);
+  position: relative; overflow: visible;
+  aspect-ratio: 3 / 4; width: 100%; max-height: min(68vh, 580px); margin-inline: auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
-.ptrack--horizontal .pblock__card { width: auto; height: min(64vh, 560px); }
-.pblock--night .pblock__card { background: var(--cream); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .6); }
-.pblock__video { display: block; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; }
+.ptrack--horizontal .pblock__card { width: auto; height: min(68vh, 580px); aspect-ratio: 3 / 4; }
+.pblock--night .pblock__card { background: transparent; box-shadow: none; }
+.pblock__video {
+  display: block; width: 100%; height: 100%;
+  object-fit: contain; object-position: center;
+  background: transparent;
+  mix-blend-mode: normal;
+}
 .pblock__caption { margin-top: 14px; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
 .pblock__contains h4 { padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--muted); }

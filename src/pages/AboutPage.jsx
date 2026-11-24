@@ -76,7 +76,7 @@ export default function AboutPage() {
           </Reveal>
           <div className="xa-story__grid">
             <Reveal className="xa-story__img">
-              <Img name="ritual-set" alt="The Origin and Restore jars side by side with a walnut scoop" sizes="(min-width: 992px) 42vw, 90vw" />
+              <Img name="ritual-set" alt="Origin and Restore tubs with sachets side by side" sizes="(min-width: 992px) 42vw, 90vw" />
             </Reveal>
             <div className="xa-chapters">
               <Reveal delay={100} className="xa-chapter">

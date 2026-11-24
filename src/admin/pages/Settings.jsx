@@ -36,7 +36,7 @@ function SettingsForm({ tab }) {
             <div className="ad-form">
               <Field label="Store name"><input value={draft.store.name} onChange={set('store.name')} /></Field>
               <Field label="Legal name"><input value={draft.store.legal} onChange={set('store.legal')} /></Field>
-              <Field label="Support email" hint="Shown on the help page and in order emails."><input type="email" value={draft.store.email} onChange={set('store.email')} placeholder="support@primalone.in" /></Field>
+              <Field label="Support email" hint="Shown on the help page and in order emails."><input type="email" value={draft.store.email} onChange={set('store.email')} placeholder="hello@primalone.in" /></Field>
               <Field label="Support phone"><input type="tel" value={draft.store.phone} onChange={set('store.phone')} placeholder="+91" /></Field>
               <Field label="GSTIN"><input value={draft.store.gstin} onChange={set('store.gstin')} className="ad-mono" /></Field>
               <Field label="FSSAI licence number"><input value={draft.store.fssai} onChange={set('store.fssai')} className="ad-mono" /></Field>
