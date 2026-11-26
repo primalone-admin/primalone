@@ -5,7 +5,7 @@ import { bundle, footer, products, formatINR } from '../data/content.js';
 import { useCart } from '../context/CartContext.jsx';
 import { useReducedMotion } from '../hooks/motion.js';
 import Icon from '../components/ui/Icon.jsx';
-import { Button, Reveal, Tbc } from '../components/ui/primitives.jsx';
+import { Button, Reveal, Tbc, TurnSources } from '../components/ui/primitives.jsx';
 import { Accordion, SecHead } from '../components/page/Inner.jsx';
 import '../components/page/Inner.css';
 import './ShopPage.css';
@@ -75,7 +75,7 @@ function ProductCard({ id, delay }) {
           {id === 'origin' && <span className="xs2-card__flag">Start here</span>}
           <img className="xs2-card__still" src={`/img/${id}-turn-poster.webp?v=pack6`} alt="" width="360" height="640" decoding="async" />
           {turnSrc && (
-            <video ref={videoRef} className="xs2-card__video" src={turnSrc} muted loop playsInline preload="auto" />
+            <video ref={videoRef} className="xs2-card__video" muted loop playsInline preload="auto"><TurnSources image={p.image} /></video>
           )}
         </Link>
         <div className="xs2-card__body">

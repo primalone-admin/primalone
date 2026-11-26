@@ -1,0 +1,14 @@
+# PrimalOne: https://primalone.in
+# An overview of the site for AI tools is at https://primalone.in/llms.txt and every page
+# has a Markdown version listed at https://primalone.in/sitemap.md
+
+User-agent: *
+Allow: /
+# Signed-in, checkout and admin screens have nothing to index
+Disallow: /admin
+Disallow: /account
+Disallow: /checkout
+# Internal build files; the same pages are served at their normal addresses (/shop, /science, ...)
+Disallow: /_p/
+
+Sitemap: https://primalone.in/sitemap.xml

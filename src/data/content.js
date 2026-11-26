@@ -72,7 +72,7 @@ export const products = {
       { text: 'One scoop with or after breakfast. Not a protein shake. ', strong: 'The daily if you eat.' },
     ],
     // scrub: the jar's 360° turn (every frame a keyframe) that the homepage scrubs with scroll
-    image: { name: 'origin-jar', video: '/video/origin.mp4', scrub: '/video/origin-scrub.mp4?v=alpha1', turn: '/video/origin-turn.webm?v=alpha3', alt: 'The PrimalOne Origin tub and sachets' },
+    image: { name: 'origin-jar', video: '/video/origin.mp4', scrub: '/video/origin-scrub.mp4?v=alpha1', turn: '/video/origin-turn.webm?v=alpha4', turnHevc: '/video/origin-turn.mov?v=2', alt: 'The PrimalOne Origin tub and sachets' },
     containsTitle: 'Origin contains',
     contains: ['Omega-3s (EPA + DHA)', 'Vitamin D3 & K2', 'A modest mineral floor', 'CoQ10', 'Greens', 'Multi-strain probiotic', 'Prebiotic fibre (PHGG)'],
     meta: ['One 20 g scoop', 'in water or a smoothie'],
@@ -98,7 +98,7 @@ export const products = {
       'An evening formula to support relaxation and recovery at the end of the day. Take it if you want the night covered. Skip it if you do not.',
       { text: '30 to 60 minutes before bed, with or without food. ', strong: 'Many people use Origin alone.' },
     ],
-    image: { name: 'restore-jar', video: '/video/restore.mp4', scrub: '/video/restore-scrub.mp4?v=alpha1', turn: '/video/restore-turn.webm?v=alpha3', alt: 'The PrimalOne Restore tub and sachets' },
+    image: { name: 'restore-jar', video: '/video/restore.mp4', scrub: '/video/restore-scrub.mp4?v=alpha1', turn: '/video/restore-turn.webm?v=alpha4', turnHevc: '/video/restore-turn.mov?v=2', alt: 'The PrimalOne Restore tub and sachets' },
     containsTitle: 'Restore contains',
     contains: ['Glycine (3 g)', 'NAC (600 mg)', 'Magnesium', 'KSM-66® ashwagandha', 'Myo-inositol'],
     meta: ['Evening only', 'never taken with Origin'],

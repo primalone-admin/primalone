@@ -351,7 +351,8 @@ function Policy({ slug, doc }) {
   const active = useReading(ids, articleRef, railRef, barRef);
 
   // contents open beside the text on desktop, folded away on phones
-  const [wide] = useState(() => window.matchMedia('(min-width: 992px)').matches);
+  // (build-time prerender has no window: render the chapters open so their text is in the HTML)
+  const [wide] = useState(() => typeof window === 'undefined' || window.matchMedia('(min-width: 992px)').matches);
 
   // Find in this policy
   const [query, setQuery] = useState('');

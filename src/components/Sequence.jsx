@@ -2,7 +2,7 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { products, sequence } from '../data/content.js';
 import { useMediaQuery, useReducedMotion } from '../hooks/motion.js';
 import Icon from './ui/Icon.jsx';
-import { Button, Reveal, Tbc } from './ui/primitives.jsx';
+import { Button, Reveal, Tbc, TurnSources } from './ui/primitives.jsx';
 import './Sequence.css';
 
 // Masked words / letters that rise one after another when their Reveal parent comes into view.
@@ -56,13 +56,14 @@ function ProductPanel({ product, tone, videoRef }) {
               <video
                 ref={videoRef}
                 className="pblock__video"
-                src={p.image.turn || p.image.scrub}
                 muted
                 loop
                 playsInline
                 preload="auto"
                 aria-label={p.image.alt}
-              />
+              >
+                <TurnSources image={p.image} />
+              </video>
             </div>
             {p.formatTbc && <figcaption className="fine pblock__caption">{p.formatTbc} <Tbc /></figcaption>}
           </figure>

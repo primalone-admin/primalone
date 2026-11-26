@@ -6,7 +6,7 @@
   "scripts": {
     "images": "node scripts/optimize-images.mjs && node scripts/cut-jar.cjs \"assets/PrimalOne Origin jar with walnut scoop-3.png\" public/img/origin-jar-cutout.webp 50 2 && node scripts/cut-restore.cjs \"assets/PrimalOne Restore Powder in Evening Light-2.png\" public/img/restore-jar-cutout.webp",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir .ssr-build && node scripts/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

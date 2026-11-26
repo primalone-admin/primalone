@@ -5,24 +5,8 @@ import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import CartDrawer from '../components/CartDrawer.jsx';
 import StickyBuyBar from '../components/StickyBuyBar.jsx';
-
-const titles = {
-  '/': 'PrimalOne | Sequence, don’t stack',
-  '/shop': 'Shop | PrimalOne',
-  '/products/origin': 'Origin | PrimalOne',
-  '/products/restore': 'Restore | PrimalOne',
-  '/sequence': 'Sequence | PrimalOne',
-  '/science': 'Science | PrimalOne',
-  '/about': 'About | PrimalOne',
-  '/journal': 'Journal | PrimalOne',
-  '/contact': 'Help & contact | PrimalOne',
-  '/account': 'Your account | PrimalOne',
-  '/checkout': 'Checkout | PrimalOne',
-  '/shipping': 'Shipping | PrimalOne',
-  '/returns': 'Returns | PrimalOne',
-  '/privacy': 'Privacy | PrimalOne',
-  '/terms': 'Terms | PrimalOne',
-};
+import { metaFor } from '../seo/meta.js';
+import { applyHead } from '../seo/head.js';
 
 // Pages whose first viewport is night/forest — keep nav logo + icons light like the homepage evening hero.
 const nightHeroRoutes = new Set(['/products/restore', '/science']);
@@ -30,11 +14,8 @@ const nightHeroRoutes = new Set(['/products/restore', '/science']);
 function ScrollManager() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    const base = titles[pathname]
-      || (pathname.startsWith('/journal/') ? 'Journal | PrimalOne'
-        : pathname === '/account/sign-in' ? 'Sign in | PrimalOne'
-          : pathname.startsWith('/account') ? 'Your account | PrimalOne' : 'PrimalOne');
-    document.title = base;
+    // title, description, canonical, robots, social tags and structured data for this route
+    applyHead(metaFor(pathname));
 
     // Home manages its own day/night swap in Hero; other routes set a stable tone.
     if (pathname !== '/') {

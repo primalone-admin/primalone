@@ -42,9 +42,10 @@ const AnnouncementsAdmin = lazy(() => import('./admin/pages/Content.jsx').then((
 const Messages = lazy(() => import('./admin/pages/Messages.jsx'));
 const Settings = lazy(() => import('./admin/pages/Settings.jsx'));
 
-export default function App() {
+// Providers + routes without a router, so the build can also render each page to static HTML
+// (src/entry-server.jsx wraps this in a StaticRouter; the browser wraps it in BrowserRouter).
+export function AppRoutes() {
   return (
-    <BrowserRouter>
       <AuthProvider>
         <CartProvider>
           <Suspense fallback={<div className="ad-loading" aria-label="Loading" />}>
@@ -100,6 +101,13 @@ export default function App() {
           </Suspense>
         </CartProvider>
       </AuthProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

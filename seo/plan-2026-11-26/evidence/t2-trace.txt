@@ -1,0 +1,9 @@
+1. Opened /products/origin: page title "Origin: Daily Essentials Morning Scoop | PrimalOne"
+2. Main heading found: "Origin"
+3. Pack-size control: radiogroup "Pack size"
+   options: "30 DAYS ₹3,499 ≈ ₹117 / day" (checked), "15 DAYS ₹1,999 ≈ ₹133 / day"
+4. Chose the 30-day option
+5. Buy button: button "Add to cart ₹3,499"
+6. After click: dialog "Your cart 1" opened
+7. Cart contents: Origin, ₹3,499 present: "Your cart 1 Save 10% when you add Restore TO CONFIRM Origin 30-day pack · Morning ₹3,499 Remove 1 Bundle + save 10% Restore 30 days · Evening, optional ₹3,599 ₹"
+8. Interactive controls with no accessible name on this screen: 0

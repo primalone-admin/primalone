@@ -109,3 +109,16 @@ export function SplitLines({ lines, as: Tag = 'h2', className = '', accentLast =
     </Tag>
   );
 }
+
+// Sources for the transparent product turntable. Safari can't show the alpha channel of VP9 WebM,
+// but it plays HEVC-with-alpha (.mov), which Chrome/Firefox don't list as "video/quicktime" and so
+// skip, falling through to the WebM. Order matters: the first source the browser accepts wins.
+export function TurnSources({ image }) {
+  return (
+    <>
+      {image.turnHevc && <source src={image.turnHevc} type="video/quicktime" />}
+      {image.turn && <source src={image.turn} type="video/webm" />}
+      {!image.turn && image.scrub && <source src={image.scrub} type="video/mp4" />}
+    </>
+  );
+}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { products, shop, formatINR } from '../data/content.js';
 import { useCart } from '../context/CartContext.jsx';
 import { useReducedMotion } from '../hooks/motion.js';
-import { Button, Reveal, SplitLines, TextLink } from './ui/primitives.jsx';
+import { Button, Reveal, SplitLines, TextLink, TurnSources } from './ui/primitives.jsx';
 import './Shop.css';
 
 // Compact product card: still by default, turn video plays immediately on hover.
@@ -61,12 +61,13 @@ function PackCard({ id }) {
           <video
             ref={videoRef}
             className="pack__video"
-            src={turnSrc}
             muted
             loop
             playsInline
             preload="auto"
-          />
+          >
+            <TurnSources image={p.image} />
+          </video>
         )}
       </Link>
 
